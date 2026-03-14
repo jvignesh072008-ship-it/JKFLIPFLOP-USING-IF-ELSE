@@ -34,39 +34,63 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
+step-1 Go to quartus software.
+
+step-2 Set new environment.
+
+step-3 Type the code to implement SR flipflop using verilog and validating their functionality using their functional tables.
+
+step-4 Run the program.
+
+step-5 Give inputs in the waveform table .
+
+step-6 Run the program.
+
 
 **PROGRAM**
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by:VIGNESH J RegisterNumber:21225230297
-*/
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.
 ```
-module jk_ff (
-    input  wire clk, rst, J, K,
-    output reg  Q
+module de7(
+    input clk,
+    input j,
+    input k,
+    output reg q,
+    output reg qb
 );
-    always @(posedge clk or posedge rst) begin
-        if (rst)
-            Q <= 1'b0;        // Reset
-        else begin
-            case ({J,K})
-                2'b00: Q <= Q;        // Hold
-                2'b01: Q <= 1'b0;     // Reset
-                2'b10: Q <= 1'b1;     // Set
-                2'b11: Q <= ~Q;       // Toggle
-            endcase
-        end
+
+always @(posedge clk) begin
+    if (j == 1'b0 && k == 1'b0) begin
+        q  <= q;    // Hold state
+        qb <= qb;
     end
+    else if (j == 1'b0 && k == 1'b1) begin
+        q  <= 1'b0; // Reset to 0
+        qb <= 1'b1;
+    end
+    else if (j == 1'b1 && k == 1'b0) begin
+        q  <= 1'b1; // Set to 1
+        qb <= 1'b0;
+    end
+    else begin      // j==1 && k==1: Toggle
+        q  <= ~q;
+        qb <= ~qb;
+    end
+end
+
 endmodule
 ```
-
+```
+Developed by:VIGNESH J RegisterNumber:212225230297
+```
+*/
 
 **RTL LOGIC FOR FLIPFLOPS**
-<img width="1031" height="557" alt="Screenshot 2025-12-15 230250" src="https://github.com/user-attachments/assets/6c4293ad-60e5-4478-9140-d2d899c7babe" />
+
+<img width="671" height="339" alt="Screenshot 2026-03-12 104844" src="https://github.com/user-attachments/assets/0d952817-6ff6-4d39-915e-cf47f008d828" />
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-<img width="1036" height="207" alt="Screenshot 2025-12-15 230328" src="https://github.com/user-attachments/assets/fd36ebc6-2381-4d5b-baea-f2a044405689" />
+<img width="1917" height="980" alt="Screenshot 2026-03-12 105035" src="https://github.com/user-attachments/assets/4161c579-d814-4fb9-8836-0b28654d00e1" />
 
 **RESULTS**
-Thus the JK flipflop using verilog and validating their functionality using their functional tables is implemented and verified.
-
+Thus,the code executed successfully.
