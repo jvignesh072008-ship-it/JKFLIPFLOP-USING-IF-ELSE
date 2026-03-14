@@ -34,63 +34,66 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-step-1 Go to quartus software.
+/* write all the steps invloved */
+1. Define Inputs/Outputs: Inputs: J (Set), K (Reset), c1k (clock); Outputs: q, qbar (~q).
 
-step-2 Set new environment.
+2. Initialization: Set q = 0 and qbar = 1 at the start of the simulation.
 
-step-3 Type the code to implement SR flipflop using verilog and validating their functionality using their functional tables.
+3. JK Flip-Flop Logic: On posedge c1k, compute q
 
-step-4 Run the program.
+4. Complementary Output: Update qbar = ~q to maintain complementarity.
 
-step-5 Give inputs in the waveform table .
-
-step-6 Run the program.
-
+5. Testbench: Simulate with combinations of J, K, and c1k to verify JK Flip-Flop functionality.
 
 **PROGRAM**
+```
+module de3(q, qb,j,k,clock,reset);
+    input j,k,clock,reset;
+    output reg q, qb;
+	 
+always @ (posedge (clock))
+
+    begin 
+        if (!reset)
+            begin
+               q <= q;
+               qb <=qb;
+            end   
+        
+else
+ //Write logic for JK flipflop using if else statement for four conditions
+
+begin
+               if (j == 0 && k == 0)
+                    begin
+                    q <= q;
+                    qb <= qb;
+                    end 
+		else if (j != k)
+                    begin
+                    q <= j;
+                    qb <= k;
+                    end
+               else if (j == 1 && k == 1) 
+                    begin 
+                    q <= ~q; 
+                    qb <= ~qb; 
+                    end 
+            end
+end  
+endmodule
 
 /* Program for flipflops and verify its truth table in quartus using Verilog programming.
-```
-module de7(
-    input clk,
-    input j,
-    input k,
-    output reg q,
-    output reg qb
-);
-
-always @(posedge clk) begin
-    if (j == 1'b0 && k == 1'b0) begin
-        q  <= q;    // Hold state
-        qb <= qb;
-    end
-    else if (j == 1'b0 && k == 1'b1) begin
-        q  <= 1'b0; // Reset to 0
-        qb <= 1'b1;
-    end
-    else if (j == 1'b1 && k == 1'b0) begin
-        q  <= 1'b1; // Set to 1
-        qb <= 1'b0;
-    end
-    else begin      // j==1 && k==1: Toggle
-        q  <= ~q;
-        qb <= ~qb;
-    end
-end
-
-endmodule
-```
-```
-Developed by:VIGNESH J RegisterNumber:212225230297
-```
+Developed by:VIGNERSH J
+RegisterNumber:212225230297
 */
-
+```
 **RTL LOGIC FOR FLIPFLOPS**
+<img width="1523" height="800" alt="image" src="https://github.com/user-attachments/assets/83b5f833-79e6-4f31-8e2b-7107e0e52ba9" />
 
-<img width="671" height="339" alt="Screenshot 2026-03-12 104844" src="https://github.com/user-attachments/assets/0d952817-6ff6-4d39-915e-cf47f008d828" />
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-<img width="1917" height="980" alt="Screenshot 2026-03-12 105035" src="https://github.com/user-attachments/assets/4161c579-d814-4fb9-8836-0b28654d00e1" />
+<img width="1657" height="802" alt="image" src="https://github.com/user-attachments/assets/ca01028d-ed41-410e-8b3c-5bda4e1156d9" />
 
 **RESULTS**
-Thus,the code executed successfully.
+Thus,The JK FlipFlop is implemented and verified sucessfully.
